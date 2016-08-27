@@ -12,6 +12,9 @@ services:
     # Baza
     mysql:
         build: ./mysql
+        # Mapowanie portu kontenera na port localhost
+        ports:
+            - "3306:3306"
         environment:
             - MYSQL_DATABASE=docker
             - MYSQL_USER=root

@@ -13,3 +13,7 @@ Zatrzymanie kontenerów
 ```
 
 
+
+Jeżeli <code>docker-compose</code> będzie się wywalał na mysql to 
+trzeba zatrzymać usługę mysql na local-u
+ 
