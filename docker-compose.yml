@@ -1,0 +1,19 @@
+version: '2'
+services:
+    #PHP + Apache
+    php:
+        build: ./php
+        # mapowanie lokalnego katalogu na path kontenera
+        volumes:
+            - ./html:/var/www/html
+        # czekaj na mysql
+        depends_on:
+            - mysql
+    # Baza
+    mysql:
+        build: ./mysql
+        environment:
+            - MYSQL_DATABASE=docker
+            - MYSQL_USER=root
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_PASSWORD=root
