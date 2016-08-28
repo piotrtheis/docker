@@ -6,6 +6,8 @@ services:
         # mapowanie lokalnego katalogu na path kontenera
         volumes:
             - ./html:/var/www/html
+        ports:
+            - "8080:8080"
         environment:
             # Host kontenera, patrz w READMY
             XDEBUG_CONFIG: remote_host=172.20.0.3
@@ -23,3 +25,8 @@ services:
             - MYSQL_USER=root
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_PASSWORD=root
+    varnish:
+        image: million12/varnish
+        environment:
+            VCL_CONFIG: ./varnish/varnish.vcl
+            CACHE_SIZE: 64m

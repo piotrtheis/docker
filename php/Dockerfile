@@ -9,3 +9,14 @@ RUN yes | pecl install xdebug \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_connect_back=on" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+RUN a2enmod  rewrite \
+    && a2enmod deflate \
+    && a2enmod headers \
+    && a2ensite 000-default.conf
+
+RUN echo "Listen 8080" > /etc/apache2/ports.conf
+
+COPY ./000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
+CMD /usr/sbin/apache2ctl -D FOREGROUND
